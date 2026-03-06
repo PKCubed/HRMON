@@ -1,2 +1,2 @@
 # HRMON
-A Stethescope shaped heart rate monitor.
+A Stethoscope-shaped Heart Rate Monitor
