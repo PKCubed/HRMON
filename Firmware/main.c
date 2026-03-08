@@ -995,8 +995,8 @@ int main(void) {
 								LCD_send_number(bpm);
 							}
 						} else {
-							LCD_set_cursor(1, 0);
-							LCD_send_string("--");
+							LCD_set_cursor(0, 0);
+							LCD_send_string(" --");
 						}
 					}
 				} else if (value < LOWER_THRESHOLD && adc_value_state) {
