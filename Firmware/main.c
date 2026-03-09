@@ -69,7 +69,12 @@ char *menu_options_text[] = {
   "Test    "
 };
 
-char *credits_text = "Created by Peter Kyle for ENGR355 at WWU, Taught by Dr. Natalie Smith-Gray Winter 2025";
+#define CREDITS_SCROLL_TIME 4000000ULL
+
+#define CREDITS_STR "        Created by Peter Kyle for ENGR355 at WWU, Taught by Dr. Natalie Smith-Gray Winter 2026        "
+#define CREDITS_TEXT_LEN (sizeof(CREDITS_STR) - 1)
+
+const char *credits_text = CREDITS_STR;
 
 #define MENU_OPTION_SLIDE_TIME 1500000ULL
 
@@ -638,6 +643,12 @@ void button_center_rising_handler() {
 		yellow_led(0);
 		rgb_set_leds(0, 0, 0);
 		rgb_refresh();
+	} else if (screen == 1) { // Credits Mode Menu Option
+		screen = 9;
+	} else if (screen == 9) {
+		screen = 1;
+	} else if (screen == 0) { // Reset menu option
+		NVIC_SystemReset();
 	}
 }
 void button_center_falling_handler() {
@@ -829,6 +840,10 @@ void bpm_led_task() {
 	rgb_refresh();
 }
 
+uint64_t credits_scroll_timer = 0;
+unsigned int credits_scroll_index = 0;
+char credits_scroll_text[9]; 
+
 int main(void) {
 	// Enable clocks
 	SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK;
@@ -963,6 +978,27 @@ int main(void) {
 				}
 			}
 		} else { // We're not selecting a menu option
+			if (screen == 9) { // We're in credits mode
+				if (screen != last_screen) { // Just got to this screen
+					last_screen = screen;
+					credits_scroll_index = 0;
+					LCD_clear();
+					LCD_set_cursor(0, 0);
+					strncpy(credits_scroll_text, credits_text, 8); // Copy the first 8 characters from credits_text to the credits_scroll_text buffer
+					LCD_send_string(credits_scroll_text); // Set to the first 8 characters of credits
+					credits_scroll_timer = t;
+				}
+				if (t-credits_scroll_timer > CREDITS_SCROLL_TIME) { // Time for a scroll update!
+					credits_scroll_timer = t;
+					credits_scroll_index++;
+					if (credits_scroll_index > CREDITS_TEXT_LEN) {
+						credits_scroll_index = 0;
+					}
+					LCD_set_cursor(0, 0);
+					strncpy(credits_scroll_text, credits_text+credits_scroll_index, 8); // Copy the first 8 characters from credits_text to the credits_scroll_text buffer
+					LCD_send_string(credits_scroll_text); // Set to the first 8 characters of credits
+				}
+			}
 			if (screen == 10) { // We're in measurement mode
 				if (screen != last_screen) { // Just got to this screen
 					last_screen = screen;
@@ -986,6 +1022,12 @@ int main(void) {
 					if (t - lcd_update_timer  >= 10000) { // Limit the speed at which we update the LCD
 						lcd_update_timer = t;
 						if (bpm_active) {
+							if (bpm < 10) {
+								LCD_set_cursor(0, 0);
+								LCD_send_data(' ');
+								LCD_send_data(' ');
+								LCD_send_number(bpm);
+							}
 							if (bpm < 100) {
 								LCD_set_cursor(0, 0);
 								LCD_send_data(' ');
