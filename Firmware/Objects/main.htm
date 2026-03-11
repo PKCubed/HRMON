@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\Objects\main.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\main.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Mon Mar  9 14:26:01 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Mon Mar  9 15:01:39 2026
 <BR><P>
-<H3>Maximum Stack Usage =        428 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        444 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; bpm_led_task &rArr; rgb_refresh &rArr; apa102_send_led &rArr; spi0_write
 <P>
@@ -189,7 +189,7 @@ Global Symbols
 <P><STRONG><a name="[9e]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[32]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 428 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 444 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; bpm_led_task &rArr; rgb_refresh &rArr; apa102_send_led &rArr; spi0_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -700,7 +700,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;button_task
 </UL>
 
-<P><STRONG><a name="[65]"></a>button_center_rising_handler</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, main.o(.text.button_center_rising_handler))
+<P><STRONG><a name="[65]"></a>button_center_rising_handler</STRONG> (Thumb, 164 bytes, Stack size 16 bytes, main.o(.text.button_center_rising_handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = button_center_rising_handler &rArr; rgb_refresh &rArr; apa102_send_led &rArr; spi0_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;yellow_led
@@ -836,8 +836,8 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[33]"></a>main</STRONG> (Thumb, 1736 bytes, Stack size 184 bytes, main.o(.text.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 428<LI>Call Chain = main &rArr; bpm_led_task &rArr; rgb_refresh &rArr; apa102_send_led &rArr; spi0_write
+<P><STRONG><a name="[33]"></a>main</STRONG> (Thumb, 2052 bytes, Stack size 200 bytes, main.o(.text.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 444<LI>Call Chain = main &rArr; bpm_led_task &rArr; rgb_refresh &rArr; apa102_send_led &rArr; spi0_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d

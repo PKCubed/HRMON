@@ -54,6 +54,15 @@ screen:
 
 9  = Credits
 10 = Measurement Mode
+12 = Test
+
+Settings screens:
+50 = Save / Back to main menu
+51 = Backlight On/Off/Auto
+52 = LED Brightness
+53 = Low HR Warning
+54 = High HR Warning
+53 = Factory Reset
 */
 
 int screen = 2;
@@ -81,6 +90,8 @@ const char *credits_text = CREDITS_STR;
 signed int menu_option_slide = 0;
 // int last_menu_option_slide = 0;
 uint64_t menu_option_slide_timer = 0;
+
+#define TEST_MODE_TIME 100000000ULL
 
 
 
@@ -649,6 +660,10 @@ void button_center_rising_handler() {
 		screen = 1;
 	} else if (screen == 0) { // Reset menu option
 		NVIC_SystemReset();
+	} else if (screen == 4) { // Test Mode Menu Option
+		screen = 12;
+	} else if (screen == 12) {
+		screen = 4;
 	}
 }
 void button_center_falling_handler() {
@@ -843,6 +858,9 @@ void bpm_led_task() {
 uint64_t credits_scroll_timer = 0;
 unsigned int credits_scroll_index = 0;
 char credits_scroll_text[9]; 
+
+uint64_t test_mode_timer = 0;
+unsigned int test_mode_index = 0;
 
 int main(void) {
 	// Enable clocks
@@ -1045,6 +1063,39 @@ int main(void) {
 					adc_value_state = 0; // Acknowledge that the signal dropped below the lower threshold
 				}
 				bpm_led_task();
+			}
+			if (screen == 12) { // We're in test mode
+				if (screen != last_screen) { // Just got to this screen
+					last_screen = screen;
+					LCD_clear();
+					LCD_set_cursor(0, 0);
+					// Fill the LCD screen with black blocks to test the pixels
+					for (int i=0; i<8; i++) {
+						LCD_send_data(255);
+					}
+					LCD_set_cursor(0, 1);
+					for (int i=0; i<8; i++) {
+						LCD_send_data(255);
+					}
+					test_mode_timer = 0;
+					test_mode_index = 0;
+				}
+				if (t-test_mode_timer > TEST_MODE_TIME) { // Time for a test mode update!
+					test_mode_timer = t;
+					
+					if (test_mode_index == 0) {
+						rgb_set_leds(255,0,0);
+					} else if (test_mode_index == 0) {
+						rgb_set_leds(0,255,0);
+					} else if (test_mode_index == 0) {
+						rgb_set_leds(0,0,255);
+					} else if (test_mode_index == 0) {
+						rgb_set_leds(255,255,255);
+						test_mode_index = 0;
+					}
+					rgb_refresh();
+					test_mode_index++;
+				}
 			}
 		}
 	}

@@ -22730,7 +22730,7 @@
 				)
 			)
 		)
-		(property "Value" "510"
+		(property "Value" "0"
 			(at 329.692 134.112 90)
 			(effects
 				(font
