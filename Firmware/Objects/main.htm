@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\Objects\main.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\main.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Sat Mar 14 21:21:00 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Sat Mar 14 21:30:24 2026
 <BR><P>
-<H3>Maximum Stack Usage =        476 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        564 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; bpm_led_task &rArr; rgb_refresh &rArr; apa102_send_led &rArr; spi0_write
 <P>
@@ -75,8 +75,8 @@ Function Pointers
 Global Symbols
 </H3>
 <P><STRONG><a name="[27]"></a>__main</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, __main.o(!!!main))
-<BR><BR>[Calls]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
-<LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+<BR><BR>[Calls]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_mkl25z4.o(.text)
 </UL>
@@ -169,8 +169,8 @@ Global Symbols
 <P><STRONG><a name="[9e]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
 
 <P><STRONG><a name="[2b]"></a>__rt_entry</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry.o(.ARM.Collect$$rtentry$$00000000))
-<BR><BR>[Called By]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
-<LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+<BR><BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
 </UL>
 
 <P><STRONG><a name="[9f]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
@@ -189,7 +189,7 @@ Global Symbols
 <P><STRONG><a name="[a0]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[32]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 476 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 564 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; bpm_led_task &rArr; rgb_refresh &rArr; apa102_send_led &rArr; spi0_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -349,7 +349,8 @@ Global Symbols
 <P><STRONG><a name="[5f]"></a>__aeabi_lmul</STRONG> (Thumb, 48 bytes, Stack size 12 bytes, llmul.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = __aeabi_lmul
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bpm_led_task
+<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bpm_led_task
 </UL>
 
 <P><STRONG><a name="[a3]"></a>_ll_mul</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, llmul.o(.text), UNUSED)
@@ -357,7 +358,8 @@ Global Symbols
 <P><STRONG><a name="[60]"></a>__aeabi_uldivmod</STRONG> (Thumb, 272 bytes, Stack size 32 bytes, lludiv.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_uldivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bpm_led_task
+<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bpm_led_task
 </UL>
 
 <P><STRONG><a name="[a4]"></a>_ll_udiv</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, lludiv.o(.text), UNUSED)
@@ -442,7 +444,8 @@ Global Symbols
 <P><STRONG><a name="[51]"></a>__aeabi_idivmod</STRONG> (Thumb, 338 bytes, Stack size 8 bytes, aeabi_sdiv.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_idivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_send_number
+<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_send_number
 </UL>
 
 <P><STRONG><a name="[63]"></a>__aeabi_d2iz</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, dfixi.o(.text))
@@ -841,15 +844,18 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[33]"></a>main</STRONG> (Thumb, 2336 bytes, Stack size 232 bytes, main.o(.text.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 476<LI>Call Chain = main &rArr; bpm_led_task &rArr; rgb_refresh &rArr; apa102_send_led &rArr; spi0_write
+<P><STRONG><a name="[33]"></a>main</STRONG> (Thumb, 2544 bytes, Stack size 320 bytes, main.o(.text.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 564<LI>Call Chain = main &rArr; bpm_led_task &rArr; rgb_refresh &rArr; apa102_send_led &rArr; spi0_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idiv
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidiv
 <LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strncpy
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_lmul
 <LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_dac
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bpm_led_task
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc_read
@@ -916,8 +922,8 @@ Global Symbols
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;button_center_rising_handler
 </UL>
 
-<P><STRONG><a name="[7b]"></a>set_ring_rainbow_color</STRONG> (Thumb, 260 bytes, Stack size 88 bytes, main.o(.text.set_ring_rainbow_color))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = set_ring_rainbow_color &rArr; rgb_set_led
+<P><STRONG><a name="[7b]"></a>set_ring_rainbow_color</STRONG> (Thumb, 320 bytes, Stack size 104 bytes, main.o(.text.set_ring_rainbow_color))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = set_ring_rainbow_color &rArr; rgb_set_led
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidiv
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_set_led

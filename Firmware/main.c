@@ -241,7 +241,7 @@ void rgb_set_leds(int r, int g, int b) {
 }
 
 // This function was created with the help of Gemini 3 Pro
-void set_ring_rainbow_color(int logical_index, uint8_t hue) {
+void set_ring_rainbow_color(int logical_index, uint8_t hue, uint8_t fade_scale) {
     // Map the logical ring position (0-5) to your physical LED indices
     int ring_map[6] = {2, 1, 0, 3, 4, 5};
     int physical_led = ring_map[logical_index];
@@ -265,11 +265,15 @@ void set_ring_rainbow_color(int logical_index, uint8_t hue) {
         g = 255 - hue * 3;
         b = 0;
     }
+		
+		// Scale down to max brightness of ~40, then apply the new fade_scale
+    uint32_t r_scaled = (r * 40) / 255;
+    uint32_t g_scaled = (g * 40) / 255;
+    uint32_t b_scaled = (b * 40) / 255;
 
-    // Scale down to your desired max brightness of ~40 out of 255
-    r = (r * 40) / 255;
-    g = (g * 40) / 255;
-    b = (b * 40) / 255;
+    r = (r_scaled * fade_scale) / 255;
+    g = (g_scaled * fade_scale) / 255;
+    b = (b_scaled * fade_scale) / 255;
 
     rgb_set_led(physical_led, r, g, b);
 }
@@ -920,6 +924,11 @@ void init_dac() {
 uint64_t credits_rainbow_timer = 0;
 uint8_t credits_rainbow_hue = 0;
 
+// Variables for fade in effect
+uint64_t credits_start_time = 0;
+#define CREDITS_FADE_TIME_CYCLES 15000000ULL    // How long a single pair takes to fully fade in
+#define CREDITS_FADE_STAGGER_CYCLES 8000000ULL  // Delay before the next pair starts fading
+
 int main(void) {
 	// Enable clocks
 	SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK;
@@ -1070,6 +1079,9 @@ int main(void) {
 					strncpy(credits_scroll_text, credits_text, 8); // Copy the first 8 characters from credits_text to the credits_scroll_text buffer
 					LCD_send_string(credits_scroll_text); // Set to the first 8 characters of credits
 					credits_scroll_timer = t;
+					
+					// Reset fade timer when entering the menu
+          credits_start_time = t;
 				}
 				if (t-credits_scroll_timer > CREDITS_SCROLL_TIME) { // Time for a scroll update!
 					credits_scroll_timer = t;
@@ -1082,18 +1094,40 @@ int main(void) {
 					LCD_send_string(credits_scroll_text); // Set to the first 8 characters of credits
 				}
 				
-				// RGB LED Rainbow Stuff
-				if (t - credits_rainbow_timer > 500000) { // The value here adjusts the speed of the rainbow animation
+				// RGB LED rainbow stuff created with the help of Gemini 3 Pro
+				if (t - credits_rainbow_timer > 500000) { 
 					credits_rainbow_timer = t;
-					credits_rainbow_hue++; // Overflowing past 255 loops it back to 0 perfectly
+					credits_rainbow_hue++; 
 					
+					uint64_t elapsed_fade = t - credits_start_time;
+
 					for (int i = 0; i < 6; i++) {
-						// Spread the 6 LEDs evenly across the 256 color wheel (256 / 6 = ~42)
 						uint8_t pixel_hue = credits_rainbow_hue + (i * 42);
-						set_ring_rainbow_color(i, pixel_hue);
+						
+						// Map to physical LED to determine the pair (0/3, 1/4, 2/5)
+						int ring_map[6] = {2, 1, 0, 3, 4, 5};
+						int physical_led = ring_map[i];
+						int pair_index = physical_led % 3; // cleanly groups them into 0, 1, and 2
+
+						// Calculate fade scaling for this specific pair
+						uint64_t pair_start_time = pair_index * CREDITS_FADE_STAGGER_CYCLES;
+						uint8_t fade_scale = 0;
+
+						if (elapsed_fade >= pair_start_time) {
+							uint64_t time_fading = elapsed_fade - pair_start_time;
+							if (time_fading >= CREDITS_FADE_TIME_CYCLES) {
+									fade_scale = 255; // Fully faded in
+							} else {
+									fade_scale = (time_fading * 255) / CREDITS_FADE_TIME_CYCLES;
+							}
+						}
+
+						// Pass the fade scale through to the helper function
+						set_ring_rainbow_color(i, pixel_hue, fade_scale);
 					}
 					rgb_refresh();
 				}
+				
 			}
 			if (screen == 10) { // We're in measurement mode
 				if (screen != last_screen) { // Just got to this screen
