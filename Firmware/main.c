@@ -240,6 +240,42 @@ void rgb_set_leds(int r, int g, int b) {
 	}
 }
 
+// This function was created with the help of Gemini 3 Pro
+void set_ring_rainbow_color(int logical_index, uint8_t hue) {
+    // Map the logical ring position (0-5) to your physical LED indices
+    int ring_map[6] = {2, 1, 0, 3, 4, 5};
+    int physical_led = ring_map[logical_index];
+
+    uint8_t r, g, b;
+    
+    // Basic 0-255 color wheel logic
+    hue = 255 - hue; 
+    if(hue < 85) {
+        r = 255 - hue * 3;
+        g = 0;
+        b = hue * 3;
+    } else if(hue < 170) {
+        hue -= 85;
+        r = 0;
+        g = hue * 3;
+        b = 255 - hue * 3;
+    } else {
+        hue -= 170;
+        r = hue * 3;
+        g = 255 - hue * 3;
+        b = 0;
+    }
+
+    // Scale down to your desired max brightness of ~40 out of 255
+    r = (r * 40) / 255;
+    g = (g * 40) / 255;
+    b = (b * 40) / 255;
+
+    rgb_set_led(physical_led, r, g, b);
+}
+
+
+
 uint64_t lcd_update_timer = 0;
 
 // Custom LCD Characters
@@ -881,6 +917,9 @@ void init_dac() {
 	DAC0->C0 = DAC_C0_DACEN_MASK | DAC_C0_DACRFS_MASK;
 }
 
+uint64_t credits_rainbow_timer = 0;
+uint8_t credits_rainbow_hue = 0;
+
 int main(void) {
 	// Enable clocks
 	SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK;
@@ -1041,6 +1080,19 @@ int main(void) {
 					LCD_set_cursor(0, 0);
 					strncpy(credits_scroll_text, credits_text+credits_scroll_index, 8); // Copy the first 8 characters from credits_text to the credits_scroll_text buffer
 					LCD_send_string(credits_scroll_text); // Set to the first 8 characters of credits
+				}
+				
+				// RGB LED Rainbow Stuff
+				if (t - credits_rainbow_timer > 500000) { // The value here adjusts the speed of the rainbow animation
+					credits_rainbow_timer = t;
+					credits_rainbow_hue++; // Overflowing past 255 loops it back to 0 perfectly
+					
+					for (int i = 0; i < 6; i++) {
+						// Spread the 6 LEDs evenly across the 256 color wheel (256 / 6 = ~42)
+						uint8_t pixel_hue = credits_rainbow_hue + (i * 42);
+						set_ring_rainbow_color(i, pixel_hue);
+					}
+					rgb_refresh();
 				}
 			}
 			if (screen == 10) { // We're in measurement mode
