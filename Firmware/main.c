@@ -979,6 +979,9 @@ int main(void) {
 			}
 			if (last_screen == 12) { // If we're coming from test mode, all the LCD characters will be blocks and we'll need to clear the LCD
 				LCD_clear();
+				red_led(0);
+				yellow_led(0);
+				green_led(0);
 			}
 			if (menu_option_slide != 0) { // If a slide has been triggered (the slide variable is not zero and is somewhere between -8 and 8)
 				if (t - menu_option_slide_timer >= MENU_OPTION_SLIDE_TIME ) { // If it's time to slide
@@ -1113,12 +1116,24 @@ int main(void) {
 					
 					if (test_mode_index == 0) {
 						rgb_set_leds(255,0,0);
+						red_led(255);
+						yellow_led(0);
+						green_led(0);
 					} else if (test_mode_index == 1) {
 						rgb_set_leds(0,255,0);
+						red_led(0);
+						yellow_led(255);
+						green_led(0);
 					} else if (test_mode_index == 2) {
 						rgb_set_leds(0,0,255);
+						red_led(0);
+						yellow_led(0);
+						green_led(1);
 					} else if (test_mode_index == 3) {
 						rgb_set_leds(255,255,255);
+						red_led(255);
+						yellow_led(255);
+						green_led(1);
 					}
 					rgb_refresh();
 					test_mode_index++;
