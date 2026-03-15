@@ -82,7 +82,7 @@ char *menu_options_text[] = {
 
 #define CREDITS_SCROLL_TIME 5500000ULL
 
-#define CREDITS_STR "        Created by Peter Kyle for ENGR355 at Walla Walla University   Taught by Dr. Natalie Smith-Gray   Winter 2026        "
+#define CREDITS_STR "        Created by Peter Kyle for ENGR355 (Embedded Systems Design) at Walla Walla University   Taught by Dr. Natalie Smith-Gray   Winter 2026        "
 #define CREDITS_TEXT_LEN (sizeof(CREDITS_STR) - 1)
 
 const char *credits_text = CREDITS_STR;
