@@ -144,11 +144,13 @@ Section Cross References
     main.o(.text.bpm_led_task) refers to main.o(.data.t) for t
     main.o(.text.bpm_led_task) refers to main.o(.bss.last_rising_edge_t) for last_rising_edge_t
     main.o(.ARM.exidx.text.bpm_led_task) refers to main.o(.text.bpm_led_task) for [Anonymous Symbol]
+    main.o(.ARM.exidx.text.init_dac) refers to main.o(.text.init_dac) for [Anonymous Symbol]
     main.o(.text.main) refers to main.o(.text.SysTick_Config) for SysTick_Config
     main.o(.text.main) refers to main.o(.text.LCD_init) for LCD_init
     main.o(.text.main) refers to main.o(.text.LED_init) for LED_init
     main.o(.text.main) refers to main.o(.text.buttons_init) for buttons_init
     main.o(.text.main) refers to main.o(.text.init_adc) for init_adc
+    main.o(.text.main) refers to main.o(.text.init_dac) for init_dac
     main.o(.text.main) refers to main.o(.text.spi0_init) for spi0_init
     main.o(.text.main) refers to main.o(.text.LCD_create_char) for LCD_create_char
     main.o(.text.main) refers to main.o(.text.rgb_set_leds) for rgb_set_leds
@@ -396,6 +398,7 @@ Removing Unused input sections from the image.
     Removing main.o(.ARM.exidx.text.init_adc), (8 bytes).
     Removing main.o(.ARM.exidx.text.adc_read), (8 bytes).
     Removing main.o(.ARM.exidx.text.bpm_led_task), (8 bytes).
+    Removing main.o(.ARM.exidx.text.init_dac), (8 bytes).
     Removing main.o(.ARM.exidx.text.main), (8 bytes).
     Removing main.o(.ARM.exidx.text.SysTick_Config), (8 bytes).
     Removing main.o(.ARM.exidx.text.__NVIC_SetPriority), (8 bytes).
@@ -407,7 +410,7 @@ Removing Unused input sections from the image.
     Removing system_mkl25z4.o(.ARM.exidx.text.SystemCoreClockUpdate), (8 bytes).
     Removing system_mkl25z4.o(.data.SystemCoreClock), (4 bytes).
 
-62 unused section(s) (total 1112 bytes) removed from the image.
+63 unused section(s) (total 1120 bytes) removed from the image.
 
 ==============================================================================
 
@@ -598,9 +601,9 @@ Image Symbol Table
     __arm_cp.27_10                           0x00000c5c   Number         4  main.o(.text.PWM_init)
     SysTick_Config                           0x00000c61   Thumb Code    68  main.o(.text.SysTick_Config)
     [Anonymous Symbol]                       0x00000c60   Section        0  main.o(.text.SysTick_Config)
-    __arm_cp.49_0                            0x00000ca4   Number         4  main.o(.text.SysTick_Config)
-    __arm_cp.49_1                            0x00000ca8   Number         4  main.o(.text.SysTick_Config)
-    __arm_cp.49_2                            0x00000cac   Number         4  main.o(.text.SysTick_Config)
+    __arm_cp.50_0                            0x00000ca4   Number         4  main.o(.text.SysTick_Config)
+    __arm_cp.50_1                            0x00000ca8   Number         4  main.o(.text.SysTick_Config)
+    __arm_cp.50_2                            0x00000cac   Number         4  main.o(.text.SysTick_Config)
     [Anonymous Symbol]                       0x00000cb0   Section        0  main.o(.text.SysTick_Handler)
     __arm_cp.1_0                             0x00000cc8   Number         4  main.o(.text.SysTick_Handler)
     __arm_cp.1_1                             0x00000ccc   Number         4  main.o(.text.SysTick_Handler)
@@ -608,8 +611,8 @@ Image Symbol Table
     __arm_cp.0_0                             0x00000cd8   Number         4  system_mkl25z4.o(.text.SystemInit)
     __NVIC_SetPriority                       0x00000cdd   Thumb Code   124  main.o(.text.__NVIC_SetPriority)
     [Anonymous Symbol]                       0x00000cdc   Section        0  main.o(.text.__NVIC_SetPriority)
-    __arm_cp.50_0                            0x00000d58   Number         4  main.o(.text.__NVIC_SetPriority)
-    __arm_cp.50_1                            0x00000d5c   Number         4  main.o(.text.__NVIC_SetPriority)
+    __arm_cp.51_0                            0x00000d58   Number         4  main.o(.text.__NVIC_SetPriority)
+    __arm_cp.51_1                            0x00000d5c   Number         4  main.o(.text.__NVIC_SetPriority)
     __NVIC_SystemReset                       0x00000d61   Thumb Code    20  main.o(.text.__NVIC_SystemReset)
     [Anonymous Symbol]                       0x00000d60   Section        0  main.o(.text.__NVIC_SystemReset)
     __arm_cp.42_0                            0x00000d74   Number         4  main.o(.text.__NVIC_SystemReset)
@@ -636,114 +639,123 @@ Image Symbol Table
     [Anonymous Symbol]                       0x00001174   Section        0  main.o(.text.button_down_falling_handler)
     [Anonymous Symbol]                       0x00001176   Section        0  main.o(.text.button_down_rising_handler)
     [Anonymous Symbol]                       0x00001178   Section        0  main.o(.text.button_left_falling_handler)
-    [Anonymous Symbol]                       0x000011b0   Section        0  main.o(.text.button_left_rising_handler)
-    [Anonymous Symbol]                       0x00001218   Section        0  main.o(.text.button_right_falling_handler)
-    [Anonymous Symbol]                       0x0000124c   Section        0  main.o(.text.button_right_rising_handler)
-    __arm_cp.37_0                            0x000012a4   Number         4  main.o(.text.button_right_rising_handler)
-    __arm_cp.37_1                            0x000012a8   Number         4  main.o(.text.button_right_rising_handler)
-    [Anonymous Symbol]                       0x000012ac   Section        0  main.o(.text.button_task)
-    __arm_cp.44_0                            0x000014b0   Number         4  main.o(.text.button_task)
-    __arm_cp.44_1                            0x000014b4   Number         4  main.o(.text.button_task)
-    __arm_cp.44_2                            0x000014b8   Number         4  main.o(.text.button_task)
-    __arm_cp.44_3                            0x000014bc   Number         4  main.o(.text.button_task)
-    __arm_cp.44_4                            0x000014c0   Number         4  main.o(.text.button_task)
-    __arm_cp.44_5                            0x000014c4   Number         4  main.o(.text.button_task)
-    __arm_cp.44_6                            0x000014c8   Number         4  main.o(.text.button_task)
-    __arm_cp.44_7                            0x000014cc   Number         4  main.o(.text.button_task)
-    __arm_cp.44_8                            0x000014d0   Number         4  main.o(.text.button_task)
-    __arm_cp.44_9                            0x000014d4   Number         4  main.o(.text.button_task)
-    __arm_cp.44_10                           0x000014d8   Number         4  main.o(.text.button_task)
-    __arm_cp.44_11                           0x000014dc   Number         4  main.o(.text.button_task)
-    __arm_cp.44_12                           0x000014e0   Number         4  main.o(.text.button_task)
-    [Anonymous Symbol]                       0x000014e4   Section        0  main.o(.text.button_up_falling_handler)
-    [Anonymous Symbol]                       0x000014ee   Section        0  main.o(.text.button_up_rising_handler)
-    [Anonymous Symbol]                       0x000014f8   Section        0  main.o(.text.buttons_init)
-    __arm_cp.32_0                            0x0000152c   Number         4  main.o(.text.buttons_init)
-    __arm_cp.32_1                            0x00001530   Number         4  main.o(.text.buttons_init)
-    __arm_cp.32_2                            0x00001534   Number         4  main.o(.text.buttons_init)
-    __arm_cp.32_3                            0x00001538   Number         4  main.o(.text.buttons_init)
-    __arm_cp.32_4                            0x0000153c   Number         4  main.o(.text.buttons_init)
-    __arm_cp.32_5                            0x00001540   Number         4  main.o(.text.buttons_init)
-    __arm_cp.32_6                            0x00001544   Number         4  main.o(.text.buttons_init)
-    [Anonymous Symbol]                       0x00001548   Section        0  main.o(.text.delay)
-    [Anonymous Symbol]                       0x00001560   Section        0  main.o(.text.delay_ms)
-    __arm_cp.4_0                             0x0000159c   Number         4  main.o(.text.delay_ms)
-    [Anonymous Symbol]                       0x000015a0   Section        0  main.o(.text.get_safe_time)
-    __arm_cp.2_0                             0x000015bc   Number         4  main.o(.text.get_safe_time)
-    [Anonymous Symbol]                       0x000015c0   Section        0  main.o(.text.get_slide_frame)
-    __arm_cp.0_0                             0x00001694   Number         4  main.o(.text.get_slide_frame)
-    __arm_cp.0_1                             0x00001698   Number         4  main.o(.text.get_slide_frame)
-    [Anonymous Symbol]                       0x0000169c   Section        0  main.o(.text.green_led)
-    __arm_cp.31_0                            0x000016c0   Number         4  main.o(.text.green_led)
-    __arm_cp.31_1                            0x000016c4   Number         4  main.o(.text.green_led)
-    [Anonymous Symbol]                       0x000016c8   Section        0  main.o(.text.init_adc)
-    __arm_cp.45_0                            0x000016e8   Number         4  main.o(.text.init_adc)
-    __arm_cp.45_1                            0x000016ec   Number         4  main.o(.text.init_adc)
-    __arm_cp.45_2                            0x000016f0   Number         4  main.o(.text.init_adc)
-    __arm_cp.45_3                            0x000016f4   Number         4  main.o(.text.init_adc)
-    [Anonymous Symbol]                       0x000016f8   Section        0  main.o(.text.main)
-    __arm_cp.48_40                           0x00001adc   Number         4  main.o(.text.main)
-    __arm_cp.48_42                           0x00001ae4   Number         4  main.o(.text.main)
-    __arm_cp.48_43                           0x00001ae8   Number         4  main.o(.text.main)
-    __arm_cp.48_44                           0x00001aec   Number         4  main.o(.text.main)
-    __arm_cp.48_45                           0x00001af0   Number         4  main.o(.text.main)
-    __arm_cp.48_46                           0x00001af4   Number         4  main.o(.text.main)
-    __arm_cp.48_47                           0x00001af8   Number         4  main.o(.text.main)
-    __arm_cp.48_48                           0x00001afc   Number         4  main.o(.text.main)
-    __arm_cp.48_49                           0x00001b00   Number         4  main.o(.text.main)
-    __arm_cp.48_50                           0x00001b04   Number         4  main.o(.text.main)
-    __arm_cp.48_54                           0x00001b14   Number         4  main.o(.text.main)
-    __arm_cp.48_55                           0x00001b18   Number         4  main.o(.text.main)
-    __arm_cp.48_56                           0x00001b1c   Number         4  main.o(.text.main)
-    __arm_cp.48_57                           0x00001efc   Number         4  main.o(.text.main)
-    __arm_cp.48_1                            0x00001f00   Number         4  main.o(.text.main)
-    __arm_cp.48_8                            0x00001f04   Number         4  main.o(.text.main)
-    __arm_cp.48_9                            0x00001f08   Number         4  main.o(.text.main)
-    __arm_cp.48_10                           0x00001f0c   Number         4  main.o(.text.main)
-    __arm_cp.48_11                           0x00001f10   Number         4  main.o(.text.main)
-    __arm_cp.48_12                           0x00001f14   Number         4  main.o(.text.main)
-    __arm_cp.48_13                           0x00001f18   Number         4  main.o(.text.main)
-    __arm_cp.48_14                           0x00001f1c   Number         4  main.o(.text.main)
-    __arm_cp.48_15                           0x00001f20   Number         4  main.o(.text.main)
-    __arm_cp.48_16                           0x00001f24   Number         4  main.o(.text.main)
-    __arm_cp.48_17                           0x00001f28   Number         4  main.o(.text.main)
-    __arm_cp.48_18                           0x00001f2c   Number         4  main.o(.text.main)
-    __arm_cp.48_19                           0x00001f30   Number         4  main.o(.text.main)
-    __arm_cp.48_20                           0x00001f34   Number         4  main.o(.text.main)
-    __arm_cp.48_21                           0x00001f38   Number         4  main.o(.text.main)
-    __arm_cp.48_22                           0x00001f3c   Number         4  main.o(.text.main)
-    __arm_cp.48_23                           0x00001f40   Number         4  main.o(.text.main)
-    __arm_cp.48_24                           0x00001f44   Number         4  main.o(.text.main)
-    __arm_cp.48_25                           0x00001f48   Number         4  main.o(.text.main)
-    __arm_cp.48_26                           0x00001f4c   Number         4  main.o(.text.main)
-    __arm_cp.48_27                           0x00001f50   Number         4  main.o(.text.main)
-    __arm_cp.48_28                           0x00001f54   Number         4  main.o(.text.main)
-    __arm_cp.48_29                           0x00001f58   Number         4  main.o(.text.main)
-    __arm_cp.48_30                           0x00001f5c   Number         4  main.o(.text.main)
-    __arm_cp.48_31                           0x00001f60   Number         4  main.o(.text.main)
-    __arm_cp.48_32                           0x00001f64   Number         4  main.o(.text.main)
-    [Anonymous Symbol]                       0x00001f68   Section        0  main.o(.text.red_led)
-    __arm_cp.29_1                            0x00001f88   Number         4  main.o(.text.red_led)
-    [Anonymous Symbol]                       0x00001f8c   Section        0  main.o(.text.rgb_refresh)
-    __arm_cp.10_1                            0x00001fcc   Number         4  main.o(.text.rgb_refresh)
-    [Anonymous Symbol]                       0x00001fd0   Section        0  main.o(.text.rgb_set_led)
-    [Anonymous Symbol]                       0x00002004   Section        0  main.o(.text.rgb_set_leds)
-    __arm_cp.12_0                            0x00002050   Number         4  main.o(.text.rgb_set_leds)
-    [Anonymous Symbol]                       0x00002054   Section        0  main.o(.text.spi0_init)
-    __arm_cp.5_0                             0x00002084   Number         4  main.o(.text.spi0_init)
-    __arm_cp.5_1                             0x00002088   Number         4  main.o(.text.spi0_init)
-    __arm_cp.5_2                             0x0000208c   Number         4  main.o(.text.spi0_init)
-    __arm_cp.5_3                             0x00002090   Number         4  main.o(.text.spi0_init)
-    __arm_cp.5_4                             0x00002094   Number         4  main.o(.text.spi0_init)
-    __arm_cp.5_5                             0x00002098   Number         4  main.o(.text.spi0_init)
-    [Anonymous Symbol]                       0x0000209c   Section        0  main.o(.text.spi0_write)
-    __arm_cp.6_0                             0x000020bc   Number         4  main.o(.text.spi0_write)
-    __arm_cp.6_1                             0x000020c0   Number         4  main.o(.text.spi0_write)
-    [Anonymous Symbol]                       0x000020c4   Section        0  main.o(.text.yellow_led)
-    __arm_cp.30_0                            0x000020e4   Number         4  main.o(.text.yellow_led)
-    __arm_cp.30_1                            0x000020e8   Number         4  main.o(.text.yellow_led)
-    [Anonymous Symbol]                       0x000020ec   Section        0  main.o(.rodata.str1.1)
-    x$fpl$usenofp                            0x000020ec   Section        0  usenofp.o(x$fpl$usenofp)
+    [Anonymous Symbol]                       0x000011bc   Section        0  main.o(.text.button_left_rising_handler)
+    [Anonymous Symbol]                       0x00001230   Section        0  main.o(.text.button_right_falling_handler)
+    [Anonymous Symbol]                       0x00001270   Section        0  main.o(.text.button_right_rising_handler)
+    __arm_cp.37_0                            0x000012d4   Number         4  main.o(.text.button_right_rising_handler)
+    __arm_cp.37_1                            0x000012d8   Number         4  main.o(.text.button_right_rising_handler)
+    [Anonymous Symbol]                       0x000012dc   Section        0  main.o(.text.button_task)
+    __arm_cp.44_0                            0x000014e0   Number         4  main.o(.text.button_task)
+    __arm_cp.44_1                            0x000014e4   Number         4  main.o(.text.button_task)
+    __arm_cp.44_2                            0x000014e8   Number         4  main.o(.text.button_task)
+    __arm_cp.44_3                            0x000014ec   Number         4  main.o(.text.button_task)
+    __arm_cp.44_4                            0x000014f0   Number         4  main.o(.text.button_task)
+    __arm_cp.44_5                            0x000014f4   Number         4  main.o(.text.button_task)
+    __arm_cp.44_6                            0x000014f8   Number         4  main.o(.text.button_task)
+    __arm_cp.44_7                            0x000014fc   Number         4  main.o(.text.button_task)
+    __arm_cp.44_8                            0x00001500   Number         4  main.o(.text.button_task)
+    __arm_cp.44_9                            0x00001504   Number         4  main.o(.text.button_task)
+    __arm_cp.44_10                           0x00001508   Number         4  main.o(.text.button_task)
+    __arm_cp.44_11                           0x0000150c   Number         4  main.o(.text.button_task)
+    __arm_cp.44_12                           0x00001510   Number         4  main.o(.text.button_task)
+    [Anonymous Symbol]                       0x00001514   Section        0  main.o(.text.button_up_falling_handler)
+    [Anonymous Symbol]                       0x0000151e   Section        0  main.o(.text.button_up_rising_handler)
+    [Anonymous Symbol]                       0x00001528   Section        0  main.o(.text.buttons_init)
+    __arm_cp.32_0                            0x0000155c   Number         4  main.o(.text.buttons_init)
+    __arm_cp.32_1                            0x00001560   Number         4  main.o(.text.buttons_init)
+    __arm_cp.32_2                            0x00001564   Number         4  main.o(.text.buttons_init)
+    __arm_cp.32_3                            0x00001568   Number         4  main.o(.text.buttons_init)
+    __arm_cp.32_4                            0x0000156c   Number         4  main.o(.text.buttons_init)
+    __arm_cp.32_5                            0x00001570   Number         4  main.o(.text.buttons_init)
+    __arm_cp.32_6                            0x00001574   Number         4  main.o(.text.buttons_init)
+    [Anonymous Symbol]                       0x00001578   Section        0  main.o(.text.delay)
+    [Anonymous Symbol]                       0x00001590   Section        0  main.o(.text.delay_ms)
+    __arm_cp.4_0                             0x000015cc   Number         4  main.o(.text.delay_ms)
+    [Anonymous Symbol]                       0x000015d0   Section        0  main.o(.text.get_safe_time)
+    __arm_cp.2_0                             0x000015ec   Number         4  main.o(.text.get_safe_time)
+    [Anonymous Symbol]                       0x000015f0   Section        0  main.o(.text.get_slide_frame)
+    __arm_cp.0_0                             0x000016c4   Number         4  main.o(.text.get_slide_frame)
+    __arm_cp.0_1                             0x000016c8   Number         4  main.o(.text.get_slide_frame)
+    [Anonymous Symbol]                       0x000016cc   Section        0  main.o(.text.green_led)
+    __arm_cp.31_0                            0x000016f0   Number         4  main.o(.text.green_led)
+    __arm_cp.31_1                            0x000016f4   Number         4  main.o(.text.green_led)
+    [Anonymous Symbol]                       0x000016f8   Section        0  main.o(.text.init_adc)
+    __arm_cp.45_1                            0x00001718   Number         4  main.o(.text.init_adc)
+    __arm_cp.45_2                            0x0000171c   Number         4  main.o(.text.init_adc)
+    __arm_cp.45_3                            0x00001720   Number         4  main.o(.text.init_adc)
+    [Anonymous Symbol]                       0x00001724   Section        0  main.o(.text.init_dac)
+    __arm_cp.48_0                            0x0000175c   Number         4  main.o(.text.init_dac)
+    __arm_cp.48_1                            0x00001760   Number         4  main.o(.text.init_dac)
+    __arm_cp.48_2                            0x00001764   Number         4  main.o(.text.init_dac)
+    __arm_cp.48_3                            0x00001768   Number         4  main.o(.text.init_dac)
+    __arm_cp.48_4                            0x0000176c   Number         4  main.o(.text.init_dac)
+    __arm_cp.48_5                            0x00001770   Number         4  main.o(.text.init_dac)
+    [Anonymous Symbol]                       0x00001774   Section        0  main.o(.text.main)
+    __arm_cp.49_43                           0x00001b6c   Number         4  main.o(.text.main)
+    __arm_cp.49_45                           0x00001b74   Number         4  main.o(.text.main)
+    __arm_cp.49_46                           0x00001b78   Number         4  main.o(.text.main)
+    __arm_cp.49_47                           0x00001b7c   Number         4  main.o(.text.main)
+    __arm_cp.49_48                           0x00001b80   Number         4  main.o(.text.main)
+    __arm_cp.49_49                           0x00001b84   Number         4  main.o(.text.main)
+    __arm_cp.49_50                           0x00001b88   Number         4  main.o(.text.main)
+    __arm_cp.49_51                           0x00001b8c   Number         4  main.o(.text.main)
+    __arm_cp.49_52                           0x00001b90   Number         4  main.o(.text.main)
+    __arm_cp.49_53                           0x00001b94   Number         4  main.o(.text.main)
+    __arm_cp.49_57                           0x00001ba4   Number         4  main.o(.text.main)
+    __arm_cp.49_58                           0x00001ba8   Number         4  main.o(.text.main)
+    __arm_cp.49_59                           0x00001bac   Number         4  main.o(.text.main)
+    __arm_cp.49_60                           0x00001fa4   Number         4  main.o(.text.main)
+    __arm_cp.49_1                            0x00001fa8   Number         4  main.o(.text.main)
+    __arm_cp.49_8                            0x00001fac   Number         4  main.o(.text.main)
+    __arm_cp.49_9                            0x00001fb0   Number         4  main.o(.text.main)
+    __arm_cp.49_10                           0x00001fb4   Number         4  main.o(.text.main)
+    __arm_cp.49_11                           0x00001fb8   Number         4  main.o(.text.main)
+    __arm_cp.49_12                           0x00001fbc   Number         4  main.o(.text.main)
+    __arm_cp.49_13                           0x00001fc0   Number         4  main.o(.text.main)
+    __arm_cp.49_14                           0x00001fc4   Number         4  main.o(.text.main)
+    __arm_cp.49_15                           0x00001fc8   Number         4  main.o(.text.main)
+    __arm_cp.49_16                           0x00001fcc   Number         4  main.o(.text.main)
+    __arm_cp.49_17                           0x00001fd0   Number         4  main.o(.text.main)
+    __arm_cp.49_18                           0x00001fd4   Number         4  main.o(.text.main)
+    __arm_cp.49_19                           0x00001fd8   Number         4  main.o(.text.main)
+    __arm_cp.49_20                           0x00001fdc   Number         4  main.o(.text.main)
+    __arm_cp.49_21                           0x00001fe0   Number         4  main.o(.text.main)
+    __arm_cp.49_22                           0x00001fe4   Number         4  main.o(.text.main)
+    __arm_cp.49_23                           0x00001fe8   Number         4  main.o(.text.main)
+    __arm_cp.49_24                           0x00001fec   Number         4  main.o(.text.main)
+    __arm_cp.49_25                           0x00001ff0   Number         4  main.o(.text.main)
+    __arm_cp.49_26                           0x00001ff4   Number         4  main.o(.text.main)
+    __arm_cp.49_27                           0x00001ff8   Number         4  main.o(.text.main)
+    __arm_cp.49_28                           0x00001ffc   Number         4  main.o(.text.main)
+    __arm_cp.49_29                           0x00002000   Number         4  main.o(.text.main)
+    __arm_cp.49_30                           0x00002004   Number         4  main.o(.text.main)
+    __arm_cp.49_31                           0x00002008   Number         4  main.o(.text.main)
+    __arm_cp.49_32                           0x0000200c   Number         4  main.o(.text.main)
+    __arm_cp.49_33                           0x00002010   Number         4  main.o(.text.main)
+    __arm_cp.49_34                           0x00002014   Number         4  main.o(.text.main)
+    __arm_cp.49_35                           0x00002018   Number         4  main.o(.text.main)
+    [Anonymous Symbol]                       0x0000201c   Section        0  main.o(.text.red_led)
+    __arm_cp.29_1                            0x0000203c   Number         4  main.o(.text.red_led)
+    [Anonymous Symbol]                       0x00002040   Section        0  main.o(.text.rgb_refresh)
+    __arm_cp.10_1                            0x00002080   Number         4  main.o(.text.rgb_refresh)
+    [Anonymous Symbol]                       0x00002084   Section        0  main.o(.text.rgb_set_led)
+    [Anonymous Symbol]                       0x000020b8   Section        0  main.o(.text.rgb_set_leds)
+    __arm_cp.12_0                            0x00002104   Number         4  main.o(.text.rgb_set_leds)
+    [Anonymous Symbol]                       0x00002108   Section        0  main.o(.text.spi0_init)
+    __arm_cp.5_0                             0x00002138   Number         4  main.o(.text.spi0_init)
+    __arm_cp.5_1                             0x0000213c   Number         4  main.o(.text.spi0_init)
+    __arm_cp.5_2                             0x00002140   Number         4  main.o(.text.spi0_init)
+    __arm_cp.5_3                             0x00002144   Number         4  main.o(.text.spi0_init)
+    __arm_cp.5_4                             0x00002148   Number         4  main.o(.text.spi0_init)
+    __arm_cp.5_5                             0x0000214c   Number         4  main.o(.text.spi0_init)
+    [Anonymous Symbol]                       0x00002150   Section        0  main.o(.text.spi0_write)
+    __arm_cp.6_0                             0x00002170   Number         4  main.o(.text.spi0_write)
+    __arm_cp.6_1                             0x00002174   Number         4  main.o(.text.spi0_write)
+    [Anonymous Symbol]                       0x00002178   Section        0  main.o(.text.yellow_led)
+    __arm_cp.30_0                            0x00002198   Number         4  main.o(.text.yellow_led)
+    __arm_cp.30_1                            0x0000219c   Number         4  main.o(.text.yellow_led)
+    [Anonymous Symbol]                       0x000021a0   Section        0  main.o(.rodata.str1.1)
+    x$fpl$usenofp                            0x000021a0   Section        0  usenofp.o(x$fpl$usenofp)
     .bss                                     0x1ffff098   Section       96  libspace.o(.bss)
     Heap_Mem                                 0x1ffff1b0   Data           0  startup_mkl25z4.o(HEAP)
     Stack_Mem                                0x1ffff1b0   Data         512  startup_mkl25z4.o(STACK)
@@ -941,31 +953,32 @@ Image Symbol Table
     button_center_rising_handler             0x000010d1   Thumb Code   164  main.o(.text.button_center_rising_handler)
     button_down_falling_handler              0x00001175   Thumb Code     2  main.o(.text.button_down_falling_handler)
     button_down_rising_handler               0x00001177   Thumb Code     2  main.o(.text.button_down_rising_handler)
-    button_left_falling_handler              0x00001179   Thumb Code    56  main.o(.text.button_left_falling_handler)
-    button_left_rising_handler               0x000011b1   Thumb Code   104  main.o(.text.button_left_rising_handler)
-    button_right_falling_handler             0x00001219   Thumb Code    52  main.o(.text.button_right_falling_handler)
-    button_right_rising_handler              0x0000124d   Thumb Code    88  main.o(.text.button_right_rising_handler)
-    button_task                              0x000012ad   Thumb Code   516  main.o(.text.button_task)
-    button_up_falling_handler                0x000014e5   Thumb Code    10  main.o(.text.button_up_falling_handler)
-    button_up_rising_handler                 0x000014ef   Thumb Code    10  main.o(.text.button_up_rising_handler)
-    buttons_init                             0x000014f9   Thumb Code    52  main.o(.text.buttons_init)
-    delay                                    0x00001549   Thumb Code    24  main.o(.text.delay)
-    delay_ms                                 0x00001561   Thumb Code    60  main.o(.text.delay_ms)
-    get_safe_time                            0x000015a1   Thumb Code    28  main.o(.text.get_safe_time)
-    get_slide_frame                          0x000015c1   Thumb Code   212  main.o(.text.get_slide_frame)
-    green_led                                0x0000169d   Thumb Code    36  main.o(.text.green_led)
-    init_adc                                 0x000016c9   Thumb Code    32  main.o(.text.init_adc)
-    main                                     0x000016f9   Thumb Code  2052  main.o(.text.main)
-    red_led                                  0x00001f69   Thumb Code    32  main.o(.text.red_led)
-    rgb_refresh                              0x00001f8d   Thumb Code    64  main.o(.text.rgb_refresh)
-    rgb_set_led                              0x00001fd1   Thumb Code    52  main.o(.text.rgb_set_led)
-    rgb_set_leds                             0x00002005   Thumb Code    76  main.o(.text.rgb_set_leds)
-    spi0_init                                0x00002055   Thumb Code    48  main.o(.text.spi0_init)
-    spi0_write                               0x0000209d   Thumb Code    32  main.o(.text.spi0_write)
-    yellow_led                               0x000020c5   Thumb Code    32  main.o(.text.yellow_led)
-    __I$use$fp                               0x000020ec   Number         0  usenofp.o(x$fpl$usenofp)
-    Region$$Table$$Base                      0x0000219c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x000021bc   Number         0  anon$$obj.o(Region$$Table)
+    button_left_falling_handler              0x00001179   Thumb Code    68  main.o(.text.button_left_falling_handler)
+    button_left_rising_handler               0x000011bd   Thumb Code   116  main.o(.text.button_left_rising_handler)
+    button_right_falling_handler             0x00001231   Thumb Code    64  main.o(.text.button_right_falling_handler)
+    button_right_rising_handler              0x00001271   Thumb Code   100  main.o(.text.button_right_rising_handler)
+    button_task                              0x000012dd   Thumb Code   516  main.o(.text.button_task)
+    button_up_falling_handler                0x00001515   Thumb Code    10  main.o(.text.button_up_falling_handler)
+    button_up_rising_handler                 0x0000151f   Thumb Code    10  main.o(.text.button_up_rising_handler)
+    buttons_init                             0x00001529   Thumb Code    52  main.o(.text.buttons_init)
+    delay                                    0x00001579   Thumb Code    24  main.o(.text.delay)
+    delay_ms                                 0x00001591   Thumb Code    60  main.o(.text.delay_ms)
+    get_safe_time                            0x000015d1   Thumb Code    28  main.o(.text.get_safe_time)
+    get_slide_frame                          0x000015f1   Thumb Code   212  main.o(.text.get_slide_frame)
+    green_led                                0x000016cd   Thumb Code    36  main.o(.text.green_led)
+    init_adc                                 0x000016f9   Thumb Code    32  main.o(.text.init_adc)
+    init_dac                                 0x00001725   Thumb Code    56  main.o(.text.init_dac)
+    main                                     0x00001775   Thumb Code  2096  main.o(.text.main)
+    red_led                                  0x0000201d   Thumb Code    32  main.o(.text.red_led)
+    rgb_refresh                              0x00002041   Thumb Code    64  main.o(.text.rgb_refresh)
+    rgb_set_led                              0x00002085   Thumb Code    52  main.o(.text.rgb_set_led)
+    rgb_set_leds                             0x000020b9   Thumb Code    76  main.o(.text.rgb_set_leds)
+    spi0_init                                0x00002109   Thumb Code    48  main.o(.text.spi0_init)
+    spi0_write                               0x00002151   Thumb Code    32  main.o(.text.spi0_write)
+    yellow_led                               0x00002179   Thumb Code    32  main.o(.text.yellow_led)
+    __I$use$fp                               0x000021a0   Number         0  usenofp.o(x$fpl$usenofp)
+    Region$$Table$$Base                      0x00002268   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00002288   Number         0  anon$$obj.o(Region$$Table)
     LEFT_ARROW                               0x1ffff000   Data           8  main.o(.data.LEFT_ARROW)
     LEFT_ARROW_INV                           0x1ffff008   Data           8  main.o(.data.LEFT_ARROW_INV)
     RIGHT_ARROW                              0x1ffff010   Data           8  main.o(.data.RIGHT_ARROW)
@@ -1014,84 +1027,84 @@ Memory Map of the image
 
   Image Entry point : 0x00000181
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00002258, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00002320, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000021bc, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00002288, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x00000000   0x00000000   0x000000c0   Data   RO          152    RESET               startup_mkl25z4.o
-    0x000000c0   0x000000c0   0x00000008   Code   RO          192  * !!!main             c_p.l(__main.o)
-    0x000000c8   0x000000c8   0x00000054   Code   RO          382    !!!scatter          c_p.l(__scatter.o)
-    0x0000011c   0x0000011c   0x0000001a   Code   RO          386    !!handler_copy      c_p.l(__scatter_copy.o)
+    0x00000000   0x00000000   0x000000c0   Data   RO          154    RESET               startup_mkl25z4.o
+    0x000000c0   0x000000c0   0x00000008   Code   RO          194  * !!!main             c_p.l(__main.o)
+    0x000000c8   0x000000c8   0x00000054   Code   RO          384    !!!scatter          c_p.l(__scatter.o)
+    0x0000011c   0x0000011c   0x0000001a   Code   RO          388    !!handler_copy      c_p.l(__scatter_copy.o)
     0x00000136   0x00000136   0x00000002   PAD
-    0x00000138   0x00000138   0x00000002   Code   RO          383    !!handler_null      c_p.l(__scatter.o)
+    0x00000138   0x00000138   0x00000002   Code   RO          385    !!handler_null      c_p.l(__scatter.o)
     0x0000013a   0x0000013a   0x00000002   PAD
-    0x0000013c   0x0000013c   0x0000001c   Code   RO          388    !!handler_zi        c_p.l(__scatter_zi.o)
-    0x00000158   0x00000158   0x00000002   Code   RO          243    .ARM.Collect$$libinit$$00000000  c_p.l(libinit.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          257    .ARM.Collect$$libinit$$00000002  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          259    .ARM.Collect$$libinit$$00000004  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          261    .ARM.Collect$$libinit$$00000006  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          264    .ARM.Collect$$libinit$$0000000C  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          266    .ARM.Collect$$libinit$$0000000E  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          268    .ARM.Collect$$libinit$$00000010  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          271    .ARM.Collect$$libinit$$00000013  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          273    .ARM.Collect$$libinit$$00000015  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          275    .ARM.Collect$$libinit$$00000017  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          277    .ARM.Collect$$libinit$$00000019  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          279    .ARM.Collect$$libinit$$0000001B  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          281    .ARM.Collect$$libinit$$0000001D  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          283    .ARM.Collect$$libinit$$0000001F  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          285    .ARM.Collect$$libinit$$00000021  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          287    .ARM.Collect$$libinit$$00000023  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          289    .ARM.Collect$$libinit$$00000025  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          291    .ARM.Collect$$libinit$$00000027  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          295    .ARM.Collect$$libinit$$0000002E  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          297    .ARM.Collect$$libinit$$00000030  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          299    .ARM.Collect$$libinit$$00000032  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000000   Code   RO          301    .ARM.Collect$$libinit$$00000034  c_p.l(libinit2.o)
-    0x0000015a   0x0000015a   0x00000002   Code   RO          302    .ARM.Collect$$libinit$$00000035  c_p.l(libinit2.o)
-    0x0000015c   0x0000015c   0x00000002   Code   RO          337    .ARM.Collect$$libshutdown$$00000000  c_p.l(libshutdown.o)
-    0x0000015e   0x0000015e   0x00000000   Code   RO          365    .ARM.Collect$$libshutdown$$00000002  c_p.l(libshutdown2.o)
-    0x0000015e   0x0000015e   0x00000000   Code   RO          367    .ARM.Collect$$libshutdown$$00000004  c_p.l(libshutdown2.o)
-    0x0000015e   0x0000015e   0x00000000   Code   RO          370    .ARM.Collect$$libshutdown$$00000007  c_p.l(libshutdown2.o)
-    0x0000015e   0x0000015e   0x00000000   Code   RO          373    .ARM.Collect$$libshutdown$$0000000A  c_p.l(libshutdown2.o)
-    0x0000015e   0x0000015e   0x00000000   Code   RO          375    .ARM.Collect$$libshutdown$$0000000C  c_p.l(libshutdown2.o)
-    0x0000015e   0x0000015e   0x00000000   Code   RO          378    .ARM.Collect$$libshutdown$$0000000F  c_p.l(libshutdown2.o)
-    0x0000015e   0x0000015e   0x00000002   Code   RO          379    .ARM.Collect$$libshutdown$$00000010  c_p.l(libshutdown2.o)
-    0x00000160   0x00000160   0x00000000   Code   RO          200    .ARM.Collect$$rtentry$$00000000  c_p.l(__rtentry.o)
-    0x00000160   0x00000160   0x00000000   Code   RO          213    .ARM.Collect$$rtentry$$00000002  c_p.l(__rtentry2.o)
-    0x00000160   0x00000160   0x00000006   Code   RO          225    .ARM.Collect$$rtentry$$00000004  c_p.l(__rtentry4.o)
-    0x00000166   0x00000166   0x00000000   Code   RO          215    .ARM.Collect$$rtentry$$00000009  c_p.l(__rtentry2.o)
-    0x00000166   0x00000166   0x00000004   Code   RO          216    .ARM.Collect$$rtentry$$0000000A  c_p.l(__rtentry2.o)
-    0x0000016a   0x0000016a   0x00000000   Code   RO          218    .ARM.Collect$$rtentry$$0000000C  c_p.l(__rtentry2.o)
-    0x0000016a   0x0000016a   0x00000008   Code   RO          219    .ARM.Collect$$rtentry$$0000000D  c_p.l(__rtentry2.o)
-    0x00000172   0x00000172   0x00000002   Code   RO          248    .ARM.Collect$$rtexit$$00000000  c_p.l(rtexit.o)
-    0x00000174   0x00000174   0x00000000   Code   RO          308    .ARM.Collect$$rtexit$$00000002  c_p.l(rtexit2.o)
-    0x00000174   0x00000174   0x00000004   Code   RO          309    .ARM.Collect$$rtexit$$00000003  c_p.l(rtexit2.o)
-    0x00000178   0x00000178   0x00000006   Code   RO          310    .ARM.Collect$$rtexit$$00000004  c_p.l(rtexit2.o)
+    0x0000013c   0x0000013c   0x0000001c   Code   RO          390    !!handler_zi        c_p.l(__scatter_zi.o)
+    0x00000158   0x00000158   0x00000002   Code   RO          245    .ARM.Collect$$libinit$$00000000  c_p.l(libinit.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          259    .ARM.Collect$$libinit$$00000002  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          261    .ARM.Collect$$libinit$$00000004  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          263    .ARM.Collect$$libinit$$00000006  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          266    .ARM.Collect$$libinit$$0000000C  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          268    .ARM.Collect$$libinit$$0000000E  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          270    .ARM.Collect$$libinit$$00000010  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          273    .ARM.Collect$$libinit$$00000013  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          275    .ARM.Collect$$libinit$$00000015  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          277    .ARM.Collect$$libinit$$00000017  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          279    .ARM.Collect$$libinit$$00000019  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          281    .ARM.Collect$$libinit$$0000001B  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          283    .ARM.Collect$$libinit$$0000001D  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          285    .ARM.Collect$$libinit$$0000001F  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          287    .ARM.Collect$$libinit$$00000021  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          289    .ARM.Collect$$libinit$$00000023  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          291    .ARM.Collect$$libinit$$00000025  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          293    .ARM.Collect$$libinit$$00000027  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          297    .ARM.Collect$$libinit$$0000002E  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          299    .ARM.Collect$$libinit$$00000030  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          301    .ARM.Collect$$libinit$$00000032  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000000   Code   RO          303    .ARM.Collect$$libinit$$00000034  c_p.l(libinit2.o)
+    0x0000015a   0x0000015a   0x00000002   Code   RO          304    .ARM.Collect$$libinit$$00000035  c_p.l(libinit2.o)
+    0x0000015c   0x0000015c   0x00000002   Code   RO          339    .ARM.Collect$$libshutdown$$00000000  c_p.l(libshutdown.o)
+    0x0000015e   0x0000015e   0x00000000   Code   RO          367    .ARM.Collect$$libshutdown$$00000002  c_p.l(libshutdown2.o)
+    0x0000015e   0x0000015e   0x00000000   Code   RO          369    .ARM.Collect$$libshutdown$$00000004  c_p.l(libshutdown2.o)
+    0x0000015e   0x0000015e   0x00000000   Code   RO          372    .ARM.Collect$$libshutdown$$00000007  c_p.l(libshutdown2.o)
+    0x0000015e   0x0000015e   0x00000000   Code   RO          375    .ARM.Collect$$libshutdown$$0000000A  c_p.l(libshutdown2.o)
+    0x0000015e   0x0000015e   0x00000000   Code   RO          377    .ARM.Collect$$libshutdown$$0000000C  c_p.l(libshutdown2.o)
+    0x0000015e   0x0000015e   0x00000000   Code   RO          380    .ARM.Collect$$libshutdown$$0000000F  c_p.l(libshutdown2.o)
+    0x0000015e   0x0000015e   0x00000002   Code   RO          381    .ARM.Collect$$libshutdown$$00000010  c_p.l(libshutdown2.o)
+    0x00000160   0x00000160   0x00000000   Code   RO          202    .ARM.Collect$$rtentry$$00000000  c_p.l(__rtentry.o)
+    0x00000160   0x00000160   0x00000000   Code   RO          215    .ARM.Collect$$rtentry$$00000002  c_p.l(__rtentry2.o)
+    0x00000160   0x00000160   0x00000006   Code   RO          227    .ARM.Collect$$rtentry$$00000004  c_p.l(__rtentry4.o)
+    0x00000166   0x00000166   0x00000000   Code   RO          217    .ARM.Collect$$rtentry$$00000009  c_p.l(__rtentry2.o)
+    0x00000166   0x00000166   0x00000004   Code   RO          218    .ARM.Collect$$rtentry$$0000000A  c_p.l(__rtentry2.o)
+    0x0000016a   0x0000016a   0x00000000   Code   RO          220    .ARM.Collect$$rtentry$$0000000C  c_p.l(__rtentry2.o)
+    0x0000016a   0x0000016a   0x00000008   Code   RO          221    .ARM.Collect$$rtentry$$0000000D  c_p.l(__rtentry2.o)
+    0x00000172   0x00000172   0x00000002   Code   RO          250    .ARM.Collect$$rtexit$$00000000  c_p.l(rtexit.o)
+    0x00000174   0x00000174   0x00000000   Code   RO          310    .ARM.Collect$$rtexit$$00000002  c_p.l(rtexit2.o)
+    0x00000174   0x00000174   0x00000004   Code   RO          311    .ARM.Collect$$rtexit$$00000003  c_p.l(rtexit2.o)
+    0x00000178   0x00000178   0x00000006   Code   RO          312    .ARM.Collect$$rtexit$$00000004  c_p.l(rtexit2.o)
     0x0000017e   0x0000017e   0x00000002   PAD
-    0x00000180   0x00000180   0x00000040   Code   RO          154  * .text               startup_mkl25z4.o
-    0x000001c0   0x000001c0   0x00000030   Code   RO          176    .text               c_p.l(llmul.o)
-    0x000001f0   0x000001f0   0x00000110   Code   RO          178    .text               c_p.l(lludiv.o)
-    0x00000300   0x00000300   0x00000044   Code   RO          180    .text               c_p.l(strlen.o)
-    0x00000344   0x00000344   0x00000018   Code   RO          182    .text               c_p.l(strcat.o)
-    0x0000035c   0x0000035c   0x0000006c   Code   RO          184    .text               c_p.l(strncpy.o)
-    0x000003c8   0x000003c8   0x00000006   Code   RO          190    .text               c_p.l(heapauxi.o)
-    0x000003ce   0x000003ce   0x00000010   Code   RO          232    .text               c_p.l(exit.o)
+    0x00000180   0x00000180   0x00000040   Code   RO          156  * .text               startup_mkl25z4.o
+    0x000001c0   0x000001c0   0x00000030   Code   RO          178    .text               c_p.l(llmul.o)
+    0x000001f0   0x000001f0   0x00000110   Code   RO          180    .text               c_p.l(lludiv.o)
+    0x00000300   0x00000300   0x00000044   Code   RO          182    .text               c_p.l(strlen.o)
+    0x00000344   0x00000344   0x00000018   Code   RO          184    .text               c_p.l(strcat.o)
+    0x0000035c   0x0000035c   0x0000006c   Code   RO          186    .text               c_p.l(strncpy.o)
+    0x000003c8   0x000003c8   0x00000006   Code   RO          192    .text               c_p.l(heapauxi.o)
+    0x000003ce   0x000003ce   0x00000010   Code   RO          234    .text               c_p.l(exit.o)
     0x000003de   0x000003de   0x00000002   PAD
-    0x000003e0   0x000003e0   0x00000008   Code   RO          244    .text               c_p.l(libspace.o)
-    0x000003e8   0x000003e8   0x0000000c   Code   RO          303    .text               c_p.l(sys_exit.o)
-    0x000003f4   0x000003f4   0x00000002   Code   RO          326    .text               c_p.l(use_no_semi.o)
-    0x000003f6   0x000003f6   0x00000000   Code   RO          328    .text               c_p.l(indicate_semi.o)
+    0x000003e0   0x000003e0   0x00000008   Code   RO          246    .text               c_p.l(libspace.o)
+    0x000003e8   0x000003e8   0x0000000c   Code   RO          305    .text               c_p.l(sys_exit.o)
+    0x000003f4   0x000003f4   0x00000002   Code   RO          328    .text               c_p.l(use_no_semi.o)
+    0x000003f6   0x000003f6   0x00000000   Code   RO          330    .text               c_p.l(indicate_semi.o)
     0x000003f6   0x000003f6   0x0000000a   Code   RO           34    .text.LCD_clear     main.o
-    0x00000400   0x00000400   0x00000010   Code   RO          153    .ARM.__at_0x400     startup_mkl25z4.o
-    0x00000410   0x00000410   0x0000016c   Code   RO          186    .text               c_p.l(aeabi_sdiv.o)
-    0x0000057c   0x0000057c   0x0000006c   Code   RO          194    .text               fz_ps.l(dfixi.o)
-    0x000005e8   0x000005e8   0x00000058   Code   RO          196    .text               fz_ps.l(dflti.o)
-    0x00000640   0x00000640   0x00000248   Code   RO          198    .text               fz_ps.l(dmul.o)
-    0x00000888   0x00000888   0x00000040   Code   RO          209    .text               c_p.l(rt_memclr.o)
-    0x000008c8   0x000008c8   0x0000003e   Code   RO          229    .text               c_p.l(sys_stackheap_outer.o)
+    0x00000400   0x00000400   0x00000010   Code   RO          155    .ARM.__at_0x400     startup_mkl25z4.o
+    0x00000410   0x00000410   0x0000016c   Code   RO          188    .text               c_p.l(aeabi_sdiv.o)
+    0x0000057c   0x0000057c   0x0000006c   Code   RO          196    .text               fz_ps.l(dfixi.o)
+    0x000005e8   0x000005e8   0x00000058   Code   RO          198    .text               fz_ps.l(dflti.o)
+    0x00000640   0x00000640   0x00000248   Code   RO          200    .text               fz_ps.l(dmul.o)
+    0x00000888   0x00000888   0x00000040   Code   RO          211    .text               c_p.l(rt_memclr.o)
+    0x000008c8   0x000008c8   0x0000003e   Code   RO          231    .text               c_p.l(sys_stackheap_outer.o)
     0x00000906   0x00000906   0x0000004c   Code   RO           52    .text.LCD_create_char  main.o
     0x00000952   0x00000952   0x0000000a   Code   RO           36    .text.LCD_home      main.o
     0x0000095c   0x0000095c   0x000000d0   Code   RO           40    .text.LCD_init      main.o
@@ -1104,10 +1117,10 @@ Memory Map of the image
     0x00000b9c   0x00000b9c   0x00000024   Code   RO           30    .text.LCD_write_nibble  main.o
     0x00000bc0   0x00000bc0   0x0000002c   Code   RO           58    .text.LED_init      main.o
     0x00000bec   0x00000bec   0x00000074   Code   RO           56    .text.PWM_init      main.o
-    0x00000c60   0x00000c60   0x00000050   Code   RO          100    .text.SysTick_Config  main.o
+    0x00000c60   0x00000c60   0x00000050   Code   RO          102    .text.SysTick_Config  main.o
     0x00000cb0   0x00000cb0   0x00000020   Code   RO            4    .text.SysTick_Handler  main.o
-    0x00000cd0   0x00000cd0   0x0000000c   Code   RO          163    .text.SystemInit    system_mkl25z4.o
-    0x00000cdc   0x00000cdc   0x00000084   Code   RO          102    .text.__NVIC_SetPriority  main.o
+    0x00000cd0   0x00000cd0   0x0000000c   Code   RO          165    .text.SystemInit    system_mkl25z4.o
+    0x00000cdc   0x00000cdc   0x00000084   Code   RO          104    .text.__NVIC_SetPriority  main.o
     0x00000d60   0x00000d60   0x0000001c   Code   RO           86    .text.__NVIC_SystemReset  main.o
     0x00000d7c   0x00000d7c   0x00000034   Code   RO           94    .text.adc_read      main.o
     0x00000db0   0x00000db0   0x00000022   Code   RO           18    .text.apa102_end_frame  main.o
@@ -1119,93 +1132,95 @@ Memory Map of the image
     0x000010d0   0x000010d0   0x000000a4   Code   RO           84    .text.button_center_rising_handler  main.o
     0x00001174   0x00001174   0x00000002   Code   RO           82    .text.button_down_falling_handler  main.o
     0x00001176   0x00001176   0x00000002   Code   RO           80    .text.button_down_rising_handler  main.o
-    0x00001178   0x00001178   0x00000038   Code   RO           74    .text.button_left_falling_handler  main.o
-    0x000011b0   0x000011b0   0x00000068   Code   RO           72    .text.button_left_rising_handler  main.o
-    0x00001218   0x00001218   0x00000034   Code   RO           78    .text.button_right_falling_handler  main.o
-    0x0000124c   0x0000124c   0x00000060   Code   RO           76    .text.button_right_rising_handler  main.o
-    0x000012ac   0x000012ac   0x00000238   Code   RO           90    .text.button_task   main.o
-    0x000014e4   0x000014e4   0x0000000a   Code   RO           70    .text.button_up_falling_handler  main.o
-    0x000014ee   0x000014ee   0x0000000a   Code   RO           68    .text.button_up_rising_handler  main.o
-    0x000014f8   0x000014f8   0x00000050   Code   RO           66    .text.buttons_init  main.o
-    0x00001548   0x00001548   0x00000018   Code   RO            8    .text.delay         main.o
-    0x00001560   0x00001560   0x00000040   Code   RO           10    .text.delay_ms      main.o
-    0x000015a0   0x000015a0   0x00000020   Code   RO            6    .text.get_safe_time  main.o
-    0x000015c0   0x000015c0   0x000000dc   Code   RO            2    .text.get_slide_frame  main.o
-    0x0000169c   0x0000169c   0x0000002c   Code   RO           64    .text.green_led     main.o
-    0x000016c8   0x000016c8   0x00000030   Code   RO           92    .text.init_adc      main.o
-    0x000016f8   0x000016f8   0x00000870   Code   RO           98    .text.main          main.o
-    0x00001f68   0x00001f68   0x00000024   Code   RO           60    .text.red_led       main.o
-    0x00001f8c   0x00001f8c   0x00000044   Code   RO           22    .text.rgb_refresh   main.o
-    0x00001fd0   0x00001fd0   0x00000034   Code   RO           24    .text.rgb_set_led   main.o
-    0x00002004   0x00002004   0x00000050   Code   RO           26    .text.rgb_set_leds  main.o
-    0x00002054   0x00002054   0x00000048   Code   RO           12    .text.spi0_init     main.o
-    0x0000209c   0x0000209c   0x00000028   Code   RO           14    .text.spi0_write    main.o
-    0x000020c4   0x000020c4   0x00000028   Code   RO           62    .text.yellow_led    main.o
-    0x000020ec   0x000020ec   0x00000000   Code   RO          211    x$fpl$usenofp       fz_ps.l(usenofp.o)
-    0x000020ec   0x000020ec   0x000000b0   Data   RO          116    .rodata.str1.1      main.o
-    0x0000219c   0x0000219c   0x00000020   Data   RO          381    Region$$Table       anon$$obj.o
+    0x00001178   0x00001178   0x00000044   Code   RO           74    .text.button_left_falling_handler  main.o
+    0x000011bc   0x000011bc   0x00000074   Code   RO           72    .text.button_left_rising_handler  main.o
+    0x00001230   0x00001230   0x00000040   Code   RO           78    .text.button_right_falling_handler  main.o
+    0x00001270   0x00001270   0x0000006c   Code   RO           76    .text.button_right_rising_handler  main.o
+    0x000012dc   0x000012dc   0x00000238   Code   RO           90    .text.button_task   main.o
+    0x00001514   0x00001514   0x0000000a   Code   RO           70    .text.button_up_falling_handler  main.o
+    0x0000151e   0x0000151e   0x0000000a   Code   RO           68    .text.button_up_rising_handler  main.o
+    0x00001528   0x00001528   0x00000050   Code   RO           66    .text.buttons_init  main.o
+    0x00001578   0x00001578   0x00000018   Code   RO            8    .text.delay         main.o
+    0x00001590   0x00001590   0x00000040   Code   RO           10    .text.delay_ms      main.o
+    0x000015d0   0x000015d0   0x00000020   Code   RO            6    .text.get_safe_time  main.o
+    0x000015f0   0x000015f0   0x000000dc   Code   RO            2    .text.get_slide_frame  main.o
+    0x000016cc   0x000016cc   0x0000002c   Code   RO           64    .text.green_led     main.o
+    0x000016f8   0x000016f8   0x0000002c   Code   RO           92    .text.init_adc      main.o
+    0x00001724   0x00001724   0x00000050   Code   RO           98    .text.init_dac      main.o
+    0x00001774   0x00001774   0x000008a8   Code   RO          100    .text.main          main.o
+    0x0000201c   0x0000201c   0x00000024   Code   RO           60    .text.red_led       main.o
+    0x00002040   0x00002040   0x00000044   Code   RO           22    .text.rgb_refresh   main.o
+    0x00002084   0x00002084   0x00000034   Code   RO           24    .text.rgb_set_led   main.o
+    0x000020b8   0x000020b8   0x00000050   Code   RO           26    .text.rgb_set_leds  main.o
+    0x00002108   0x00002108   0x00000048   Code   RO           12    .text.spi0_init     main.o
+    0x00002150   0x00002150   0x00000028   Code   RO           14    .text.spi0_write    main.o
+    0x00002178   0x00002178   0x00000028   Code   RO           62    .text.yellow_led    main.o
+    0x000021a0   0x000021a0   0x00000000   Code   RO          213    x$fpl$usenofp       fz_ps.l(usenofp.o)
+    0x000021a0   0x000021a0   0x000000c6   Data   RO          118    .rodata.str1.1      main.o
+    0x00002266   0x00002266   0x00000002   PAD
+    0x00002268   0x00002268   0x00000020   Data   RO          383    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x1ffff000, Load base: 0x000021c0, Size: 0x00000098, Max: 0xffffffff, ABSOLUTE)
-
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x1ffff000   0x000021c0   0x00000008   Data   RW          127    .data.LEFT_ARROW    main.o
-    0x1ffff008   0x000021c8   0x00000008   Data   RW          129    .data.LEFT_ARROW_INV  main.o
-    0x1ffff010   0x000021d0   0x00000008   Data   RW          128    .data.RIGHT_ARROW   main.o
-    0x1ffff018   0x000021d8   0x00000008   Data   RW          130    .data.RIGHT_ARROW_INV  main.o
-    0x1ffff020   0x000021e0   0x00000040   Data   RW          126    .data.STARTUP_LOGO  main.o
-    0x1ffff060   0x00002220   0x00000004   Data   RW          118    .data.credits_text  main.o
-    0x1ffff064   0x00002224   0x00000004   Data   RW          115    .data.last_screen   main.o
-    0x1ffff068   0x00002228   0x00000014   Data   RW          117    .data.menu_options_text  main.o
-    0x1ffff07c   0x0000223c   0x00000001   Data   RW          124    .data.rgb_brightness  main.o
-    0x1ffff07d   0x0000223d   0x00000003   PAD
-    0x1ffff080   0x00002240   0x00000004   Data   RW          114    .data.screen        main.o
-    0x1ffff084   0x00002244   0x00000004   PAD
-    0x1ffff088   0x00002248   0x00000008   Data   RW          122    .data.t             main.o
-    0x1ffff090   0x00002250   0x00000008   Data   RW          121    .data.t_unsafe      main.o
-
-
-    Execution Region ER_ZI (Exec base: 0x1ffff098, Load base: 0x00002258, Size: 0x00000318, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x1ffff000, Load base: 0x00002288, Size: 0x00000098, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x1ffff098        -       0x00000060   Zero   RW          245    .bss                c_p.l(libspace.o)
-    0x1ffff0f8        -       0x00000004   Zero   RW          137    .bss.adc_value_state  main.o
-    0x1ffff0fc        -       0x00000004   Zero   RW          135    .bss.bpm            main.o
-    0x1ffff100        -       0x00000004   Zero   RW          131    .bss.bpm_active     main.o
-    0x1ffff104        -       0x00000001   Zero   RW          113    .bss.button_center_state  main.o
-    0x1ffff105   0x00002258   0x00000003   PAD
-    0x1ffff108        -       0x00000008   Zero   RW          108    .bss.button_center_timer  main.o
-    0x1ffff110        -       0x00000001   Zero   RW          112    .bss.button_down_state  main.o
-    0x1ffff111   0x00002258   0x00000007   PAD
-    0x1ffff118        -       0x00000008   Zero   RW          107    .bss.button_down_timer  main.o
-    0x1ffff120        -       0x00000001   Zero   RW          110    .bss.button_left_state  main.o
-    0x1ffff121   0x00002258   0x00000007   PAD
-    0x1ffff128        -       0x00000008   Zero   RW          105    .bss.button_left_timer  main.o
-    0x1ffff130        -       0x00000001   Zero   RW          111    .bss.button_right_state  main.o
-    0x1ffff131   0x00002258   0x00000007   PAD
-    0x1ffff138        -       0x00000008   Zero   RW          106    .bss.button_right_timer  main.o
-    0x1ffff140        -       0x00000001   Zero   RW          109    .bss.button_up_state  main.o
-    0x1ffff141   0x00002258   0x00000007   PAD
-    0x1ffff148        -       0x00000008   Zero   RW          104    .bss.button_up_timer  main.o
-    0x1ffff150        -       0x00000004   Zero   RW          139    .bss.credits_scroll_index  main.o
-    0x1ffff154        -       0x00000009   Zero   RW          142    .bss.credits_scroll_text  main.o
-    0x1ffff15d   0x00002258   0x00000003   PAD
-    0x1ffff160        -       0x00000008   Zero   RW          138    .bss.credits_scroll_timer  main.o
-    0x1ffff168        -       0x00000008   Zero   RW          132    .bss.last_rising_edge_t  main.o
-    0x1ffff170        -       0x00000008   Zero   RW          125    .bss.lcd_update_timer  main.o
-    0x1ffff178        -       0x00000004   Zero   RW          119    .bss.menu_option_slide  main.o
-    0x1ffff17c   0x00002258   0x00000004   PAD
-    0x1ffff180        -       0x00000008   Zero   RW          120    .bss.menu_option_slide_timer  main.o
-    0x1ffff188        -       0x00000004   Zero   RW          133    .bss.period         main.o
-    0x1ffff18c        -       0x00000004   Zero   RW          134    .bss.period_ms      main.o
-    0x1ffff190        -       0x00000012   Zero   RW          123    .bss.rgb_leds       main.o
-    0x1ffff1a2   0x00002258   0x00000002   PAD
-    0x1ffff1a4        -       0x00000004   Zero   RW          141    .bss.test_mode_index  main.o
-    0x1ffff1a8        -       0x00000008   Zero   RW          140    .bss.test_mode_timer  main.o
-    0x1ffff1b0        -       0x00000000   Zero   RW          151    HEAP                startup_mkl25z4.o
-    0x1ffff1b0        -       0x00000200   Zero   RW          150    STACK               startup_mkl25z4.o
+    0x1ffff000   0x00002288   0x00000008   Data   RW          129    .data.LEFT_ARROW    main.o
+    0x1ffff008   0x00002290   0x00000008   Data   RW          131    .data.LEFT_ARROW_INV  main.o
+    0x1ffff010   0x00002298   0x00000008   Data   RW          130    .data.RIGHT_ARROW   main.o
+    0x1ffff018   0x000022a0   0x00000008   Data   RW          132    .data.RIGHT_ARROW_INV  main.o
+    0x1ffff020   0x000022a8   0x00000040   Data   RW          128    .data.STARTUP_LOGO  main.o
+    0x1ffff060   0x000022e8   0x00000004   Data   RW          120    .data.credits_text  main.o
+    0x1ffff064   0x000022ec   0x00000004   Data   RW          117    .data.last_screen   main.o
+    0x1ffff068   0x000022f0   0x00000014   Data   RW          119    .data.menu_options_text  main.o
+    0x1ffff07c   0x00002304   0x00000001   Data   RW          126    .data.rgb_brightness  main.o
+    0x1ffff07d   0x00002305   0x00000003   PAD
+    0x1ffff080   0x00002308   0x00000004   Data   RW          116    .data.screen        main.o
+    0x1ffff084   0x0000230c   0x00000004   PAD
+    0x1ffff088   0x00002310   0x00000008   Data   RW          124    .data.t             main.o
+    0x1ffff090   0x00002318   0x00000008   Data   RW          123    .data.t_unsafe      main.o
+
+
+    Execution Region ER_ZI (Exec base: 0x1ffff098, Load base: 0x00002320, Size: 0x00000318, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x1ffff098        -       0x00000060   Zero   RW          247    .bss                c_p.l(libspace.o)
+    0x1ffff0f8        -       0x00000004   Zero   RW          139    .bss.adc_value_state  main.o
+    0x1ffff0fc        -       0x00000004   Zero   RW          137    .bss.bpm            main.o
+    0x1ffff100        -       0x00000004   Zero   RW          133    .bss.bpm_active     main.o
+    0x1ffff104        -       0x00000001   Zero   RW          115    .bss.button_center_state  main.o
+    0x1ffff105   0x00002320   0x00000003   PAD
+    0x1ffff108        -       0x00000008   Zero   RW          110    .bss.button_center_timer  main.o
+    0x1ffff110        -       0x00000001   Zero   RW          114    .bss.button_down_state  main.o
+    0x1ffff111   0x00002320   0x00000007   PAD
+    0x1ffff118        -       0x00000008   Zero   RW          109    .bss.button_down_timer  main.o
+    0x1ffff120        -       0x00000001   Zero   RW          112    .bss.button_left_state  main.o
+    0x1ffff121   0x00002320   0x00000007   PAD
+    0x1ffff128        -       0x00000008   Zero   RW          107    .bss.button_left_timer  main.o
+    0x1ffff130        -       0x00000001   Zero   RW          113    .bss.button_right_state  main.o
+    0x1ffff131   0x00002320   0x00000007   PAD
+    0x1ffff138        -       0x00000008   Zero   RW          108    .bss.button_right_timer  main.o
+    0x1ffff140        -       0x00000001   Zero   RW          111    .bss.button_up_state  main.o
+    0x1ffff141   0x00002320   0x00000007   PAD
+    0x1ffff148        -       0x00000008   Zero   RW          106    .bss.button_up_timer  main.o
+    0x1ffff150        -       0x00000004   Zero   RW          141    .bss.credits_scroll_index  main.o
+    0x1ffff154        -       0x00000009   Zero   RW          144    .bss.credits_scroll_text  main.o
+    0x1ffff15d   0x00002320   0x00000003   PAD
+    0x1ffff160        -       0x00000008   Zero   RW          140    .bss.credits_scroll_timer  main.o
+    0x1ffff168        -       0x00000008   Zero   RW          134    .bss.last_rising_edge_t  main.o
+    0x1ffff170        -       0x00000008   Zero   RW          127    .bss.lcd_update_timer  main.o
+    0x1ffff178        -       0x00000004   Zero   RW          121    .bss.menu_option_slide  main.o
+    0x1ffff17c   0x00002320   0x00000004   PAD
+    0x1ffff180        -       0x00000008   Zero   RW          122    .bss.menu_option_slide_timer  main.o
+    0x1ffff188        -       0x00000004   Zero   RW          135    .bss.period         main.o
+    0x1ffff18c        -       0x00000004   Zero   RW          136    .bss.period_ms      main.o
+    0x1ffff190        -       0x00000012   Zero   RW          125    .bss.rgb_leds       main.o
+    0x1ffff1a2   0x00002320   0x00000002   PAD
+    0x1ffff1a4        -       0x00000004   Zero   RW          143    .bss.test_mode_index  main.o
+    0x1ffff1a8        -       0x00000008   Zero   RW          142    .bss.test_mode_timer  main.o
+    0x1ffff1b0        -       0x00000000   Zero   RW          153    HEAP                startup_mkl25z4.o
+    0x1ffff1b0        -       0x00000200   Zero   RW          152    STACK               startup_mkl25z4.o
 
 
 ==============================================================================
@@ -1215,14 +1230,14 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-      6114        540        176        145        144      16371   main.o
+      6294        572        198        145        144      16732   main.o
         80         44        192          0        512        992   startup_mkl25z4.o
-        12          4          0          0          0       2653   system_mkl25z4.o
+        12          4          0          0          0       2640   system_mkl25z4.o
 
     ----------------------------------------------------------------------
-      6208        588        400        152        696      20016   Object Totals
+      6388        620        424        152        696      20364   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         2          0          0          7         40          0   (incl. Padding)
+         2          0          2          7         40          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1281,15 +1296,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      8236        656        400        152        792      20888   Grand Totals
-      8236        656        400        152        792      20888   ELF Image Totals
-      8236        656        400        152          0          0   ROM Totals
+      8416        688        424        152        792      21236   Grand Totals
+      8416        688        424        152        792      21236   ELF Image Totals
+      8416        688        424        152          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 8636 (   8.43kB)
+    Total RO  Size (Code + RO Data)                 8840 (   8.63kB)
     Total RW  Size (RW Data + ZI Data)               944 (   0.92kB)
-    Total ROM Size (Code + RO Data + RW Data)       8788 (   8.58kB)
+    Total ROM Size (Code + RO Data + RW Data)       8992 (   8.78kB)
 
 ==============================================================================
 

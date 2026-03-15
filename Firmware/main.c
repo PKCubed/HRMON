@@ -44,6 +44,8 @@ uint8_t button_right_state = 0;
 uint8_t button_down_state = 0;
 uint8_t button_center_state = 0;
 
+#define DAC_PIN 30
+
 /*
 screen:
 0  = Restart Option
@@ -78,9 +80,9 @@ char *menu_options_text[] = {
   "Test    "
 };
 
-#define CREDITS_SCROLL_TIME 4000000ULL
+#define CREDITS_SCROLL_TIME 5500000ULL
 
-#define CREDITS_STR "        Created by Peter Kyle for ENGR355 at WWU, Taught by Dr. Natalie Smith-Gray Winter 2026        "
+#define CREDITS_STR "        Created by Peter Kyle for ENGR355 at Walla Walla University   Taught by Dr. Natalie Smith-Gray   Winter 2026        "
 #define CREDITS_TEXT_LEN (sizeof(CREDITS_STR) - 1)
 
 const char *credits_text = CREDITS_STR;
@@ -91,7 +93,7 @@ signed int menu_option_slide = 0;
 // int last_menu_option_slide = 0;
 uint64_t menu_option_slide_timer = 0;
 
-#define TEST_MODE_TIME 100000000ULL
+#define TEST_MODE_TIME 10000000ULL
 
 
 
@@ -601,7 +603,7 @@ void button_left_rising_handler() {
 		}
 		LCD_set_cursor(6, 1);
 		LCD_send_data(1);
-	} else {
+	} else if (screen != 12) {
 		LCD_set_cursor(1, 1);
 		LCD_send_data(' ');
 	}
@@ -610,7 +612,7 @@ void button_left_falling_handler() {
 	if (screen > 0 && screen <= 4) {
 		LCD_set_cursor(1, 1);
 		LCD_send_data(0);
-	} else {
+	} else if (screen != 12) {
 		LCD_set_cursor(1, 1);
 		LCD_send_data(' ');
 	}
@@ -625,7 +627,7 @@ void button_right_rising_handler() {
 		}
 		LCD_set_cursor(1, 1);
 		LCD_send_data(0);
-	} else {
+	} else if (screen != 12) {
 		LCD_set_cursor(6, 1);
 		LCD_send_data(' ');
 	}
@@ -634,7 +636,7 @@ void button_right_falling_handler() {
 	if (screen < 4) {
 		LCD_set_cursor(6, 1);
 		LCD_send_data(1);
-	} else {
+	} else if (screen != 12) {
 		LCD_set_cursor(6, 1);
 		LCD_send_data(' ');
 	}
@@ -791,8 +793,8 @@ int bpm = 0;
 int last_bpm = 0;
 int adc_value_state = 0;
 
-#define UPPER_THRESHOLD 1985 // 1.600 V (1.600/3.3*4096 = 1985.94)
-#define LOWER_THRESHOLD 1737 // 1.400 V (1.400/3.3*4096 = 1737.7)
+#define UPPER_THRESHOLD 2110 // 1.700 V (1.700/3.3*4096 = 2110.06)
+#define LOWER_THRESHOLD 1986 // 1.600 V (1.600/3.3*4096 = 1985.94)
 
 #define LED_BLINK_DURATION 400ULL // ms
 #define LED_BLINK_DURATION_CYCLES ((DEFAULT_SYSTEM_CLOCK/1000ULL) * LED_BLINK_DURATION)
@@ -862,6 +864,23 @@ char credits_scroll_text[9];
 uint64_t test_mode_timer = 0;
 unsigned int test_mode_index = 0;
 
+void init_dac() {
+	// Enable clock to DAC and port E
+	SIM->SCGC6 |= SIM_SCGC6_DAC0_MASK;
+	SIM->SCGC5 |= SIM_SCGC5_PORTE_MASK;
+	
+	// Select analog for pin
+	PORTE->PCR[DAC_PIN] &= ~PORT_PCR_MUX_MASK;
+	PORTE->PCR[DAC_PIN] |= PORT_PCR_MUX(0);
+	
+	// Disable buffer mode
+	DAC0->C1 = 0;
+	DAC0->C2 = 0;
+	
+	// Enable DAC, seect VDDA as reference voltage
+	DAC0->C0 = DAC_C0_DACEN_MASK | DAC_C0_DACRFS_MASK;
+}
+
 int main(void) {
 	// Enable clocks
 	SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK;
@@ -877,6 +896,7 @@ int main(void) {
 	buttons_init();
 	
 	init_adc();
+	init_dac();
 	
 	spi0_init(); // Initiallize SPI for APA102 leds
 	
@@ -957,6 +977,9 @@ int main(void) {
 				rgb_set_leds(0, 0, 0);
 				rgb_refresh();
 			}
+			if (last_screen == 12) { // If we're coming from test mode, all the LCD characters will be blocks and we'll need to clear the LCD
+				LCD_clear();
+			}
 			if (menu_option_slide != 0) { // If a slide has been triggered (the slide variable is not zero and is somewhere between -8 and 8)
 				if (t - menu_option_slide_timer >= MENU_OPTION_SLIDE_TIME ) { // If it's time to slide
 					menu_option_slide_timer = t;
@@ -1025,6 +1048,11 @@ int main(void) {
 					LCD_send_string("-- BPM");
 				}
 				int value = adc_read(8); // Refresh current voltage sample
+				
+				// Output voltage sample to DAC
+				DAC0->DAT[0].DATL = DAC_DATL_DATA0(value);
+				DAC0->DAT[0].DATH = DAC_DATH_DATA1(value >> 8);
+				
 				if (value > UPPER_THRESHOLD && !adc_value_state) { // If we are above the upper threshold and were previously in the falling state
 					// Inside here gets triggered once per rising edge
 					period = t-last_rising_edge_t;
@@ -1085,16 +1113,19 @@ int main(void) {
 					
 					if (test_mode_index == 0) {
 						rgb_set_leds(255,0,0);
-					} else if (test_mode_index == 0) {
+					} else if (test_mode_index == 1) {
 						rgb_set_leds(0,255,0);
-					} else if (test_mode_index == 0) {
+					} else if (test_mode_index == 2) {
 						rgb_set_leds(0,0,255);
-					} else if (test_mode_index == 0) {
+					} else if (test_mode_index == 3) {
 						rgb_set_leds(255,255,255);
-						test_mode_index = 0;
 					}
 					rgb_refresh();
 					test_mode_index++;
+					if (test_mode_index == 4) {
+						test_mode_index = 0;
+					}
+					
 				}
 			}
 		}
